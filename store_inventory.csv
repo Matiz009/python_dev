@@ -1,0 +1,12 @@
+product,category,stock_qty,reorder_level
+Notebook A4,Stationery,43,34
+Gel Pen Pack,Stationery,124,23
+Highlighter Set,Stationery,97,41
+Samosa,Snacks,157,32
+Chicken Patty,Snacks,165,35
+Potato Chips,Snacks,174,21
+Mineral Water 500ml,Beverages,59,54
+Cold Coffee,Beverages,174,53
+Energy Drink,Beverages,162,32
+USB Flash Drive 32GB,Electronics,145,37
+Earphones Basic,Electronics,164,51

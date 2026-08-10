@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Lumina Creative Studio</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text-dark: #1f2937;
+            --text-light: #4b5563;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #94a3b8;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Story Section */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .story-content h2 {
+            font-size: 2.25rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .story-content p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .story-image {
+            background-color: #e2e8f0;
+            height: 350px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        /* Values Section */
+        .values {
+            background-color: var(--bg-light);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .values h2 {
+            font-size: 2.25rem;
+            margin-bottom: 50px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .value-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .team h2 {
+            font-size: 2.25rem;
+            margin-bottom: 50px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .member-img {
+            height: 220px;
+            background-color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .member-info {
+            padding: 20px;
+        }
+
+        .member-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .member-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>About Lumina Studio</h1>
+        <p>We are a passionate collective of creators, thinkers, and builders crafting digital experiences that matter.</p>
+    </header>
+
+    <!-- Our Story Section -->
+    <section class="container">
+        <div class="story-grid">
+            <div class="story-content">
+                <h2>Our Story</h2>
+                <p>Founded in 2020, Lumina started with a simple idea: to bridge the gap between stunning design and seamless functionality. What began as a small team working out of a cramped garage has grown into a dynamic global agency.</p>
+                <p>We believe that great work comes from collaboration, curiosity, and a relentless pursuit of excellence. Every project we take on is an opportunity to push boundaries and build something unforgettable.</p>
+            </div>
+            <div class="story-image">
+                [Team Workspace Image Placeholder]
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values">
+        <div class="container" style="padding: 0;">
+            <h2>What Drives Us</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Innovation First</h3>
+                    <p>We constantly explore new technologies and creative methods to keep our clients ahead of the curve.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Radical Transparency</h3>
+                    <p>Open communication and honesty form the backbone of our relationships with clients and team members alike.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Uncompromising Quality</h3>
+                    <p>Details matter. We sweat the small stuff to ensure every pixel and line of code is built to perfection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+        <h2>Meet The Leadership</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-img">Photo</div>
+                <div class="member-info">
+                    <h4>Sarah Jenkins</h4>
+                    <p>CEO & Founder</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-img">Photo</div>
+                <div class="member-info">
+                    <h4>Marcus Vance</h4>
+                    <p>Creative Director</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-img">Photo</div>
+                <div class="member-info">
+                    <h4>Elena Rostova</h4>
+                    <p>Lead Developer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

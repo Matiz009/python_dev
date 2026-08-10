@@ -1,0 +1,192 @@
+
+<style>
+  .wrap { padding: 1.5rem 0; font-family: var(--font-sans); }
+  .progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 1.5rem; }
+  .progress-fill { height: 100%; border-radius: 2px; background: var(--fill-accent); transition: width 0.4s ease; }
+  .meta { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-secondary); margin-bottom: 1rem; }
+  .q-card { background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+  .q-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.4rem; }
+  .q-text { font-size: 17px; font-weight: 500; color: var(--text-primary); margin: 0; line-height: 1.5; }
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+  .opt-btn { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: var(--radius); border: 0.5px solid var(--border-strong); background: var(--surface-1); color: var(--text-primary); font-size: 14px; cursor: pointer; text-align: left; transition: background 0.12s, border-color 0.12s, transform 0.1s; }
+  .opt-btn:hover:not(:disabled) { background: var(--surface-0); border-color: var(--border-stronger); }
+  .opt-btn:active:not(:disabled) { transform: scale(0.98); }
+  .opt-btn .badge { width: 24px; height: 24px; border-radius: 50%; background: var(--surface-0); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; color: var(--text-secondary); }
+  .opt-btn .label { font-size: 13px; font-weight: 500; }
+  .opt-btn .sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+  .opt-btn.correct { background: var(--bg-success); border-color: var(--border-success); color: var(--text-success); }
+  .opt-btn.correct .badge { background: var(--border-success); color: var(--text-success); border-color: transparent; }
+  .opt-btn.correct .sub { color: var(--text-success); opacity: 0.8; }
+  .opt-btn.wrong { background: var(--bg-danger); border-color: var(--border-danger); color: var(--text-danger); }
+  .opt-btn.wrong .badge { background: var(--border-danger); color: var(--text-danger); border-color: transparent; }
+  .opt-btn.wrong .sub { color: var(--text-danger); opacity: 0.8; }
+  .opt-btn.reveal { background: var(--bg-success); border-color: var(--border-success); color: var(--text-success); }
+  .opt-btn.reveal .badge { background: var(--border-success); color: var(--text-success); border-color: transparent; }
+  .opt-btn.reveal .sub { color: var(--text-success); opacity: 0.8; }
+  .feedback { border-radius: var(--radius); padding: 11px 14px; font-size: 13px; margin-bottom: 0.75rem; display: none; line-height: 1.55; }
+  .feedback.show { display: block; }
+  .feedback.ok { background: var(--bg-success); color: var(--text-success); border: 0.5px solid var(--border-success); }
+  .feedback.bad { background: var(--bg-danger); color: var(--text-danger); border: 0.5px solid var(--border-danger); }
+  .next-btn { width: 100%; padding: 13px; border-radius: var(--radius); border: 0.5px solid var(--border-accent); background: var(--bg-accent); color: var(--text-accent); font-size: 15px; font-weight: 500; cursor: pointer; display: none; }
+  .next-btn.show { display: block; }
+  .next-btn:hover { background: var(--fill-accent); color: var(--on-accent); }
+  .pillar-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .pillar-tag { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+  .tag-I { background: var(--bg-accent); color: var(--text-accent); }
+  .tag-A { background: var(--bg-warning); color: var(--text-warning); }
+  .tag-E { background: var(--bg-success); color: var(--text-success); }
+  .tag-P { background: var(--bg-pro); color: var(--text-pro); }
+  .score-screen { text-align: center; padding: 2rem 0; }
+  .score-big { font-size: 52px; font-weight: 500; color: var(--text-accent); margin: 1rem 0 0.25rem; }
+  .score-sub { color: var(--text-secondary); font-size: 15px; margin-bottom: 0.5rem; }
+  .breakdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 1.5rem 0; }
+  .bd-card { background: var(--surface-1); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 10px 8px; text-align: center; }
+  .bd-name { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+  .bd-score { font-size: 18px; font-weight: 500; color: var(--text-primary); }
+  .restart-btn { padding: 12px 32px; border-radius: var(--radius); border: 0.5px solid var(--border-strong); background: var(--surface-1); color: var(--text-primary); font-size: 15px; cursor: pointer; margin-top: 1rem; }
+  .restart-btn:hover { background: var(--surface-0); }
+</style>
+
+<div class="wrap">
+  <h2 class="sr-only" style="position:absolute;left:-9999px">Four Pillars of OOP Quiz</h2>
+  <div class="pillar-tags">
+    <span class="pillar-tag tag-I">Inheritance</span>
+    <span class="pillar-tag tag-A">Abstraction</span>
+    <span class="pillar-tag tag-E">Encapsulation</span>
+    <span class="pillar-tag tag-P">Polymorphism</span>
+  </div>
+  <div id="quiz-body"></div>
+</div>
+
+<script>
+const PILLARS = {
+  I: { name: "Inheritance", short: "Inherit" },
+  A: { name: "Abstraction", short: "Abstract" },
+  E: { name: "Encapsulation", short: "Encapsulate" },
+  P: { name: "Polymorphism", short: "Polymorphism" },
+};
+
+const questions = [
+  { q: "A Dog and a Cat both have a makeSound() method, but each makes a different sound when called.", a: "P", explain: "Same method name, different behavior per class — that's polymorphism at work." },
+  { q: "A BankAccount class keeps its balance field private and only allows changes through deposit() and withdraw() methods.", a: "E", explain: "Hiding internal data and controlling access through methods is encapsulation." },
+  { q: "An ElectricCar class reuses all properties of Car (speed, fuel, brand) and adds a batteryLevel field on top.", a: "I", explain: "ElectricCar acquires Car's members automatically — classic inheritance." },
+  { q: "You use a .drive() method on a Car without knowing whether the engine is petrol, diesel, or electric underneath.", a: "A", explain: "Hiding 'how it works' and exposing only 'what it does' is abstraction." },
+  { q: "A Shape base class has an area() method. Circle, Rectangle, and Triangle each override it with their own formula.", a: "P", explain: "One interface (area), many forms of behavior — polymorphism." },
+  { q: "A User class has a private password field. There is no getter for it; only a checkPassword() method exists.", a: "E", explain: "The password is wrapped and protected — encapsulation prevents direct access." },
+  { q: "An Admin class inherits from User, gaining username and email fields without rewriting them.", a: "I", explain: "Admin gets User's properties for free through inheritance." },
+  { q: "A TV remote has buttons like volumeUp() and channelNext(), but you don't know the internal circuit logic.", a: "A", explain: "The complex internals are hidden behind a simple interface — abstraction." },
+  { q: "A payment system accepts credit cards, PayPal, and crypto, all through the same pay() call.", a: "P", explain: "Different payment types, one unified interface — polymorphism." },
+  { q: "A Student class bundles name, rollNo, and GPA together with enroll() and getGrade() in one unit.", a: "E", explain: "Wrapping related data and behavior into one unit is encapsulation." },
+  { q: "A SavingsAccount and CurrentAccount both extend BankAccount, sharing balance and owner fields.", a: "I", explain: "Both account types inherit the shared structure from BankAccount." },
+  { q: "A coffee machine has a brewCoffee() button. You don't see the water pump, heater, or grinder logic.", a: "A", explain: "Complex brewing logic is hidden behind a simple button — abstraction." },
+  { q: "A Vehicle class has move(). Car.move() drives, Boat.move() sails, Plane.move() flies.", a: "P", explain: "Same method, context-specific behavior — polymorphism." },
+  { q: "A Person class keeps age private and validates it in setAge() — no one can set age to -5.", a: "E", explain: "Protecting data integrity through controlled access is encapsulation." },
+  { q: "A Manager class gets the clockIn() and clockOut() methods of Employee without redefining them.", a: "I", explain: "Manager reuses Employee's behavior through inheritance." },
+  { q: "A sorting library exposes sort(list) but hides whether it uses quicksort, mergesort, or heapsort internally.", a: "A", explain: "The caller doesn't need to know the algorithm — abstraction." },
+  { q: "A print(document) function handles Word files, PDFs, and images, picking the right renderer automatically.", a: "P", explain: "One function, multiple object types handled differently — polymorphism." },
+  { q: "A Capsule class stores medicine data privately; only prescribed() and consume() are publicly accessible.", a: "E", explain: "Internal state is protected and only accessed through defined methods — encapsulation." },
+  { q: "A GraduateStudent class inherits Student's rollNo and GPA, and adds a thesis field.", a: "I", explain: "GraduateStudent extends Student, inheriting all its existing structure." },
+  { q: "A GPS app shows 'Turn left in 200m' without revealing the satellite triangulation or map-tile rendering.", a: "A", explain: "Complex logic is hidden; you see only the essential result — abstraction." },
+  { q: "A Notification class sends alerts. EmailNotification, SMSNotification, and PushNotification each implement send() differently.", a: "P", explain: "The same send() call behaves differently per subclass — polymorphism." },
+  { q: "A game Character class has private health. Only takeDamage() and heal() can modify it.", a: "E", explain: "Health is guarded from direct manipulation through encapsulation." },
+  { q: "A Parrot class extends Bird, automatically getting wings and canFly() without rewriting them.", a: "I", explain: "Parrot inherits Bird's attributes and behaviors — inheritance." },
+  { q: "A ride-sharing app shows estimatedArrival() without revealing the routing algorithm or driver-matching logic.", a: "A", explain: "The implementation is hidden; only the useful result is exposed — abstraction." },
+];
+
+const pillarKeys = ["I","A","E","P"];
+let shuffled = [], idx = 0, score = 0, breakdown = {I:0,A:0,E:0,P:0}, totals = {I:0,A:0,E:0,P:0}, answered = false;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length-1; i > 0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function start() {
+  shuffled = shuffle(questions);
+  idx = 0; score = 0;
+  breakdown = {I:0,A:0,E:0,P:0};
+  totals = {I:0,A:0,E:0,P:0};
+  render();
+}
+
+function render() {
+  const root = document.getElementById('quiz-body');
+  if (idx >= shuffled.length) {
+    const pct = Math.round((score/shuffled.length)*100);
+    let msg = pct===100 ? "Flawless — you've mastered the four pillars!" : pct>=75 ? "Strong grasp of OOP fundamentals." : pct>=50 ? "Getting there — a couple more rounds will solidify it." : "Review the pillars and try again — it'll click soon.";
+    root.innerHTML = `<div class="score-screen">
+      <p style="font-size:13px;color:var(--text-muted)">Quiz complete</p>
+      <h2 style="font-size:22px;font-weight:500;margin:0.25rem 0 0">Final score</h2>
+      <div class="score-big">${score}/${shuffled.length}</div>
+      <p class="score-sub">${msg}</p>
+      <div class="breakdown">
+        ${pillarKeys.map(k=>`<div class="bd-card"><div class="bd-name">${PILLARS[k].short}</div><div class="bd-score">${breakdown[k]}/${totals[k]}</div></div>`).join('')}
+      </div>
+      <button class="restart-btn" onclick="start()"><i class="ti ti-refresh" aria-hidden="true" style="margin-right:6px;font-size:15px;vertical-align:-2px"></i>Play again</button>
+    </div>`;
+    return;
+  }
+
+  answered = false;
+  const q = shuffled[idx];
+  totals[q.a]++;
+  const pct = (idx/shuffled.length)*100;
+
+  const opts = shuffle(pillarKeys);
+  const letters = ["A","B","C","D"];
+
+  root.innerHTML = `
+    <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="meta">
+      <span style="color:var(--text-muted)">${idx+1} of ${shuffled.length}</span>
+      <span>Score: <strong>${score}</strong></span>
+    </div>
+    <div class="q-card">
+      <p class="q-label">Which pillar applies?</p>
+      <p class="q-text">${q.q}</p>
+    </div>
+    <div class="options">
+      ${opts.map((k,i)=>`
+        <button class="opt-btn" id="opt-${k}" onclick="choose('${k}')">
+          <div class="badge">${letters[i]}</div>
+          <div>
+            <div class="label">${PILLARS[k].name}</div>
+          </div>
+        </button>`).join('')}
+    </div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="next-btn" onclick="next()">${idx+1 < shuffled.length ? 'Next question →' : 'See results →'}</button>
+  `;
+}
+
+function choose(pick) {
+  if (answered) return;
+  answered = true;
+  const q = shuffled[idx];
+  const correct = pick === q.a;
+  if (correct) { score++; breakdown[q.a]++; }
+
+  pillarKeys.forEach(k => {
+    const btn = document.getElementById('opt-'+k);
+    if (!btn) return;
+    btn.disabled = true;
+    if (k === pick && correct) btn.classList.add('correct');
+    else if (k === pick && !correct) btn.classList.add('wrong');
+    else if (k === q.a) btn.classList.add('reveal');
+  });
+
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback show ' + (correct ? 'ok' : 'bad');
+  fb.innerHTML = correct
+    ? `<i class="ti ti-circle-check" aria-hidden="true" style="margin-right:6px;vertical-align:-2px"></i><strong>Correct — ${PILLARS[q.a].name}!</strong> ${q.explain}`
+    : `<i class="ti ti-circle-x" aria-hidden="true" style="margin-right:6px;vertical-align:-2px"></i><strong>Not quite.</strong> The answer is <strong>${PILLARS[q.a].name}</strong>. ${q.explain}`;
+  document.getElementById('next-btn').classList.add('show');
+}
+
+function next() { idx++; render(); }
+start();
+</script>

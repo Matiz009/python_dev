@@ -1,0 +1,14 @@
+tests/
+docs/
+.github/
+Dockerfile
+.env
+.env.*
+*.db
+*.sqlite3
+venv/
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+htmlcov/

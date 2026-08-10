@@ -1,0 +1,16 @@
+# Runtime dependencies. Pinned so a deploy is reproducible.
+Flask==3.1.0
+Flask-SQLAlchemy==3.1.1
+Flask-Migrate==4.0.7
+Flask-Cors==5.0.0
+Flask-Limiter==3.8.0
+SQLAlchemy==2.0.36
+alembic==1.14.0
+python-dotenv==1.0.1
+
+# PostgreSQL driver, used in production via DATABASE_URL.
+# SQLite needs no driver — it ships with Python.
+psycopg[binary]==3.2.3
+
+# WSGI server for Docker / VM deployments. Vercel does not use this.
+gunicorn==23.0.0

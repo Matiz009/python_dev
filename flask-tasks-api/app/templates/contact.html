@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<h1>Contact</h1>
+<p>
+    Questions about this API, or found a bug? Open an issue in the repository —
+    that is the fastest route to a fix.
+</p>
+
+<h2>Reporting a problem</h2>
+<p>Include the <code>X-Request-Id</code> header from the failing response. Every
+request logs under that id, which makes an incident straightforward to trace.</p>
+
+<pre><code>curl -i {{ request.url_root }}api/v1/tasks/999999</code></pre>
+{% endblock %}

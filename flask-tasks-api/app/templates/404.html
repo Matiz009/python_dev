@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found{% endblock %}
+
+{% block content %}
+<h1>404 &mdash; page not found</h1>
+<p>That URL does not exist. If you were looking for the API, start at
+    <a href="/api/v1">/api/v1</a>.</p>
+<p><a class="btn" href="{{ url_for('pages.index') }}">Back home</a></p>
+{% endblock %}

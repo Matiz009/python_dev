@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Flask Tasks API{% endblock %}
+
+{% block content %}
+<h1>Flask Tasks API</h1>
+<p>
+    A small, production-shaped REST API for managing tasks: SQLAlchemy models,
+    Alembic migrations, API-key protected writes, structured JSON logging and
+    health probes — running as a single serverless function on Vercel.
+</p>
+<p><a class="btn" href="/api/v1">Browse the API</a></p>
+
+<h2>Quick start</h2>
+<pre><code>curl {{ request.url_root }}api/v1/tasks
+
+curl -X POST {{ request.url_root }}api/v1/tasks \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: $API_KEY" \
+  -d '{"title": "Write the docs"}'</code></pre>
+
+<h2>Endpoints</h2>
+<table>
+    <thead>
+        <tr><th>Method</th><th>Path</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>GET</td><td><code>/api/v1/tasks</code></td><td>List tasks (paginated, filterable)</td></tr>
+        <tr><td>POST</td><td><code>/api/v1/tasks</code></td><td>Create a task</td></tr>
+        <tr><td>GET</td><td><code>/api/v1/tasks/&lt;id&gt;</code></td><td>Fetch one task</td></tr>
+        <tr><td>PATCH</td><td><code>/api/v1/tasks/&lt;id&gt;</code></td><td>Update a task</td></tr>
+        <tr><td>DELETE</td><td><code>/api/v1/tasks/&lt;id&gt;</code></td><td>Delete a task</td></tr>
+        <tr><td>GET</td><td><code>/healthz</code></td><td>Liveness probe</td></tr>
+        <tr><td>GET</td><td><code>/readyz</code></td><td>Readiness probe (checks the database)</td></tr>
+    </tbody>
+</table>
+{% endblock %}
