@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand — primary accent #00a65a */
+  --color-brand-50:  #e9f8f1;
+  --color-brand-100: #cdefe0;
+  --color-brand-200: #9fe0c4;
+  --color-brand-300: #63cca2;
+  --color-brand-400: #26b67f;
+  --color-brand-500: #00a65a;
+  --color-brand-600: #00914e;
+  --color-brand-700: #007740;
+  --color-brand-800: #005e33;
+  --color-brand-900: #004d2b;
+
+  /* Chart categorical slots (validated all-pairs, light surface) */
+  --color-series-1: #2a78d6;
+  --color-series-2: #eb6834;
+  --color-series-3: #1baf7a;
+  --color-series-4: #4a3aa7;
+
+  /* Status (fixed, never themed) */
+  --color-status-good:     #0ca30c;
+  --color-status-warning:  #fab219;
+  --color-status-serious:  #ec835a;
+  --color-status-critical: #d03b3b;
+
+  /* Chart chrome & ink */
+  --color-ink-primary:   #0b0b0b;
+  --color-ink-secondary: #52514e;
+  --color-ink-muted:     #898781;
+  --color-grid:          #e1e0d9;
+  --color-axis:          #c3c2b7;
+  --color-plane:         #f7f8f7;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html, body, #root { height: 100%; }
+
+body {
+  background-color: var(--color-plane);
+  color: var(--color-ink-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tabular figures for columns that must align vertically */
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Recharts focus rings off, keep our own */
+.recharts-wrapper:focus, .recharts-surface:focus { outline: none; }
+
+@media print {
+  .no-print { display: none !important; }
+}
+
+/* Slim scrollbars inside scroll regions */
+.thin-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.thin-scroll::-webkit-scrollbar-thumb { background: #d5d5cf; border-radius: 9999px; }
+.thin-scroll::-webkit-scrollbar-track { background: transparent; }
